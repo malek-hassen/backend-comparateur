@@ -1,33 +1,26 @@
 package com.example.comparateur.forfaitmobile.dto;
 
+
 import com.example.comparateur.forfaitmobile.entity.TypeM;
-import com.example.comparateur.Operateur.Operateur;
+import com.example.comparateur.operateur.entity.Operateur;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
 
+
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ForfaitMobileDTO {
-
     private UUID id;
-    private String titre;
-    private Integer version;
-    private Double prixOffre;
-    private boolean visibilite;
-    private Double periodeOffre;
     private Integer debit;
-    private String typeDebit;
-    private Double prixBase;
-    private boolean iseng;
-    private Integer dureeEng;
-    private String lien;
-    private String description;
-    private String resumer;
     private Double prixSIM;
-    private Integer nbHeure;
+    private Integer heure;
     private boolean with5G;
     private Double value;
     private boolean isBlocked;

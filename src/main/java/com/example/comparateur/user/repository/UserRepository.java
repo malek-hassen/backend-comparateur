@@ -1,8 +1,10 @@
-package com.example.comparateur.User.Repository;
+package com.example.comparateur.user.repository;
 
-import com.example.comparateur.User.Entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.comparateur.user.entity.AppUser;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {}
+    public interface UserRepository extends CrudRepository<AppUser, UUID> {}

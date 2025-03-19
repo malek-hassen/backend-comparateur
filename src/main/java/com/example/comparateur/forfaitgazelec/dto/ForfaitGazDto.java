@@ -1,10 +1,12 @@
 package com.example.comparateur.forfaitgazelec.dto;
 
+
 import com.example.comparateur.forfaitgazelec.entity.TypeGE;
-import com.example.comparateur.classes.Fournisseurs;
+import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -12,18 +14,12 @@ import java.util.UUID;
 @Builder
 public class ForfaitGazDto {
     private UUID id;
-    private String titre;
-    private boolean visibilite;
-    private Double prixwattfixe;
     private Double abnMensuel;
     private Double prixwattindexe;
-    private boolean iseng;
-    private Double dureeEng;
-    private Double dureeEngConsommation;
+    private Double dureeConsommation;
     private Double puissanceCompteur;
-    private Double dureeForfait;
     private Double prixverte;
     private String origin;
     private Fournisseurs fournisseurs;
-    private TypeGE typeGaz;
+    private List<TypeGE> typeGaz;
 }

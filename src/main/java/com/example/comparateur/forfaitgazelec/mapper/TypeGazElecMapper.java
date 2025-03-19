@@ -25,6 +25,8 @@ public class TypeGazElecMapper {
         typeGE.setId(typeGazElecDto.getId());
         typeGE.setNom(typeGazElecDto.getNom());
         typeGE.setDiscp(typeGazElecDto.getDiscp());
+        typeGE.setTypeGaz(typeGazElecDto.getTypeGaz());
+        typeGE.setTypeelectricite(typeGazElecDto.getTypeelectricite());
 
         return typeGE;
     }
@@ -33,6 +35,8 @@ public class TypeGazElecMapper {
         return TypeGazElecDto.builder()
                 .id(typeGE.getId())
                 .nom(typeGE.getNom())
+                .typeelectricite(typeGE.getTypeelectricite())
+                .typeGaz(typeGE.getTypeGaz())
                 .discp(typeGE.getDiscp())
                 .build();
     }

@@ -2,20 +2,32 @@ package com.example.comparateur.admin.service;
 
 
 import com.example.comparateur.admin.entity.Admin;
+import com.example.comparateur.admin.mapper.AdminMapper;
 import com.example.comparateur.admin.repository.AdminRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.comparateur.forfaitgazelec.entity.ForfaitE;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class AdminService {
-    @Autowired
-    private AdminRepository adminRepository;
+
+    private final AdminRepository adminRepository;
+    private final AdminMapper adminMapper;
+
+    public AdminService(AdminRepository adminRepository, AdminMapper adminMapper) {
+        this.adminRepository = adminRepository;
+        this.adminMapper = adminMapper;
+    }
 
     public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
+        List<Admin> forfaits = new ArrayList<>();
+        adminRepository.findAll().forEach(forfaits::add);  // Convert Iterable to List
+        return forfaits.stream()
+                .map(adminMapper::toDto)
+                .toList();
     }
 
     public Admin getAdminById(UUID id) {

@@ -26,6 +26,7 @@ public class TypeInternetMapper {
         typeI.setId(typeInternetDTO.getId());
         typeI.setNom(typeInternetDTO.getNom());
         typeI.setDiscp(typeInternetDTO.getDiscp());
+        typeI.setForfaitInternet(typeInternetDTO.getForfaitInternet());
 
         return typeI;
     }
@@ -35,6 +36,7 @@ public class TypeInternetMapper {
                 .id(typeI.getId())
                 .nom(typeI.getNom())
                 .discp(typeI.getDiscp())
+                .forfaitInternet(typeI.getForfaitInternet())
                 .build();
     }
     public TypeInternetResponse toResponse(TypeInternet typeI) {

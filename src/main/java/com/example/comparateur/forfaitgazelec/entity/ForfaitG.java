@@ -1,80 +1,64 @@
 package com.example.comparateur.forfaitgazelec.entity;
 
-import com.example.comparateur.classes.Fournisseurs;
+
+import com.example.comparateur.Forfait;
+import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Data
-@Table(name = "forfait_G")
-public class ForfaitG {
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private UUID id;
+//@Table(name = "forfait_G")
+public class ForfaitG extends Forfait {
 
 
-    @Column(name = "titre")
-    private String titre;
 
-    @Column(name = "visibilite")
-    private boolean visibilite;
 
-    @Column(name = "prix_watt_fixe")
-    private Double prixwattfixe;
-
-    @Column(name = "abn_mensuel")
     private Double abnMensuel;
 
-    @Column(name = "prix_watt_indexe")
     private Double prixwattindexe;
 
-    @Column(name = "is_eng")
-    private boolean iseng;
 
-    @Column(name = "duree_eng")
-    private Double dureeEng;
 
-    @Column(name = "duree_eng_consommation")
-    private Double dureeEngConsommation;
+    private Double dureeConsommation;
 
-    @Column(name = "puissance_compteur")
     private Double puissanceCompteur;
 
-    @Column(name = "duree_forfait")
-    private Double dureeForfait;
 
-    @Column(name = "prix_verte")
+
     private Double prixverte;
 
-    @Column(name = "origin")
     private String origin;
 
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
     private Fournisseurs fournisseurs;
 
-    @ManyToOne
-    @JoinColumn(name = "type_gaz_id")
-    private TypeGE typeGaz;
 
-//    @Setter
-//    @Getter
-//    @ManyToMany
-//    @JoinTable(
-//            name = "box_type",
-//            joinColumns = @JoinColumn(name = "box_id"),
-//            inverseJoinColumns = @JoinColumn(name = "type_box_id")
-//    )
-//        private List<TypeGE> typeGaz;
+    @ManyToMany
+    @JoinTable(
+            name = "Type_forfaitg",
+            joinColumns = { @JoinColumn(name = "forfait_gaz_id") },
+            inverseJoinColumns = { @JoinColumn(name = "type_GE_id") }
+    )
+    private List<TypeGE> typeGaz;
+    @Override
+    public String toString() {
+        return "ForfaitG{"
+                + ", abnMensuel=" + abnMensuel
+                + ", prixwattindexe=" + prixwattindexe
+                + ", dureeEngConsommation=" + dureeConsommation
+                + ", puissanceCompteur=" + puissanceCompteur
+                + ", prixverte=" + prixverte
+                + ", origin='" + origin + '\''
+                + ", fournisseurs=" + fournisseurs
+                + ", typeGaz=" + typeGaz;
+    }
 
 }

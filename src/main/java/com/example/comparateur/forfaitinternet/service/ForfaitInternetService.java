@@ -1,47 +1,80 @@
 package com.example.comparateur.forfaitinternet.service;
 
+import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
 import com.example.comparateur.forfaitinternet.entity.ForfaitInternet;
-import com.example.comparateur.forfaitinternet.entity.TypeInternet;
-import com.example.comparateur.Operateur.Operateur;
+import com.example.comparateur.forfaitinternet.mapper.ForfaitInternetMapper;
 import com.example.comparateur.forfaitinternet.repository.ForfaitInternetRepository;
-import com.example.comparateur.Operateur.OperateurRepository;
-import com.example.comparateur.forfaitinternet.repository.TypeIntRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class ForfaitInternetService {
 
-    @Autowired
-    private ForfaitInternetRepository forfaitInternetRepository;
 
-    @Autowired
-    private TypeIntRepository typeForfaitInternetRepository;
+    private final ForfaitInternetRepository forfaitInternetRepository;
+    private final ForfaitInternetMapper forfaitInternetMapper;
 
-    @Autowired
-    private OperateurRepository operateursRepository;
-
-    public List<ForfaitInternet> getAllForfaitsInternet() {
-        return forfaitInternetRepository.findAll();
+    public ForfaitInternetService(ForfaitInternetRepository forfaitInternetRepository, ForfaitInternetMapper forfaitInternetMapper) {
+        this.forfaitInternetRepository = forfaitInternetRepository;
+        this.forfaitInternetMapper = forfaitInternetMapper;
     }
 
-    public ForfaitInternet getForfaitInternetById(UUID id) {
-        return forfaitInternetRepository.findById(id).orElse(null);
+    public ForfaitInternet createForfaitInternet(ForfaitInternetDto forfaitInternetDTO) {
+        return forfaitInternetRepository.save(forfaitInternetMapper.toEntity(forfaitInternetDTO));
     }
 
-    public ForfaitInternet saveForfaitInternet(ForfaitInternet forfaitInternet, UUID typeForfaitInternetId, UUID operateursId) {
-        TypeInternet typeInternet = typeForfaitInternetRepository.findById(typeForfaitInternetId).orElse(null);
-        Operateur operateurs = operateursRepository.findById(operateursId).orElse(null);
-        forfaitInternet.setTypeBox((List<TypeInternet>) typeInternet);
-        forfaitInternet.setOperateur(operateurs);
-        return forfaitInternetRepository.save(forfaitInternet);
+
+    public List<ForfaitInternetDto> getAllForfaitInternet() {
+        List<ForfaitInternet> forfaits = new ArrayList<>();
+        forfaitInternetRepository.findAll().forEach(forfaits::add);  // Convert Iterable to List
+        return forfaits.stream()
+                .map(forfaitInternetMapper::toDto)
+                .toList();
     }
 
-    public void deleteForfaitInternet(UUID id) {
-        forfaitInternetRepository.deleteById(id);
+
+    public ResponseEntity<ForfaitInternetDto> getForfaitInternetById(UUID id) {
+        Optional<ForfaitInternet> forfaitInternetOptional = forfaitInternetRepository.findById(id);
+        return forfaitInternetOptional.map(forfaitInternetMapper::toDto)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+
+
+    public ResponseEntity<String> updateForfaitInternet(ForfaitInternetDto forfaitInternetDTO) {
+        if (forfaitInternetDTO == null || forfaitInternetDTO.getId() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request data");
+        }
+
+        if (!forfaitInternetRepository.existsById(forfaitInternetDTO.getId())) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Forfait Mobile not found");
+        }
+
+        ForfaitInternet forfaitInternet =forfaitInternetMapper.toEntity(forfaitInternetDTO);
+        forfaitInternet= forfaitInternetRepository.findById(forfaitInternet.getId())
+                .orElseThrow(() -> new RuntimeException("Forfait not found")); // Fetch entity
+        forfaitInternetRepository.save(forfaitInternet);
+
+        return ResponseEntity.ok("Forfait Mobile Updated Successfully");
+    }
+
+
+
+    public ResponseEntity<String> deleteForfaitInternet (UUID id) {
+        if (!forfaitInternetRepository.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Forfait Internet not found");
+        }
+
+        forfaitInternetRepository.deleteById(id );
+
+        return ResponseEntity.ok("Forfait Internet Deleted Successfully");
     }
 }
 

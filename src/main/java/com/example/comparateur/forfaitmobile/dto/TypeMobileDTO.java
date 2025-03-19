@@ -1,16 +1,15 @@
 package com.example.comparateur.forfaitmobile.dto;
 
 
+import com.example.comparateur.forfaitmobile.entity.ForfaitM;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 
-@Getter
-@Setter
+
 @Data
 @Builder
 public class TypeMobileDTO {
@@ -18,4 +17,5 @@ public class TypeMobileDTO {
     private UUID typeMid;
     private String nom;
     private String discp;
+    private List<ForfaitM> forfaitM;
 }

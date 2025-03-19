@@ -1,31 +1,43 @@
-package com.example.comparateur.User.Service;
+package com.example.comparateur.user.service;
 
 
-import com.example.comparateur.User.Repository.UserRepository;
-import com.example.comparateur.User.Entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.comparateur.user.dto.UserDto;
+import com.example.comparateur.user.entity.AppUser;
+import com.example.comparateur.user.mapper.UserMapper;
+import com.example.comparateur.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
-    @Autowired
+
+    private final UserMapper userMapper;
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    public User getUserById(Long id) {
+    public List<AppUser> getAllUsers() {
+
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+    public AppUser getUserById(UUID id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public AppUser saveUser(UserDto user) {
+
+        return userRepository.save( userMapper.toEntity(user));
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(UUID id) {
         userRepository.deleteById(id);
     }
 }

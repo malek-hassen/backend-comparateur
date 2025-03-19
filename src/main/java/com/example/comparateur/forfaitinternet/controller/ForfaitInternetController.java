@@ -1,39 +1,57 @@
 package com.example.comparateur.forfaitinternet.controller;
 
+import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
 import com.example.comparateur.forfaitinternet.entity.ForfaitInternet;
 import com.example.comparateur.forfaitinternet.service.ForfaitInternetService;
+import com.example.comparateur.forfaitmobile.dto.ForfaitMobileDTO;
+import com.example.comparateur.forfaitmobile.entity.ForfaitM;
+import com.example.comparateur.forfaitmobile.service.ForfaitMobileService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/forfaits-internet")
+@RequestMapping("/forfait/forfaits-internet")
 public class ForfaitInternetController {
 
-    private ForfaitInternetService forfaitInternetService;
 
-    @GetMapping
-    public List<ForfaitInternet> getAllForfaitsInternet() {
-        return forfaitInternetService.getAllForfaitsInternet();
+    private final ForfaitInternetService forfaitInternetService;
+
+    public ForfaitInternetController(ForfaitInternetService forfaitInternetService) {
+        this.forfaitInternetService = forfaitInternetService;
     }
 
-    @GetMapping("/{id}")
-    public ForfaitInternet getForfaitInternetById(@PathVariable UUID id) {
+
+    @PostMapping("/save")
+    public ForfaitInternet createForfaitInternet(@RequestBody ForfaitInternetDto ForfaitInternetDTO) {
+        return forfaitInternetService.createForfaitInternet(ForfaitInternetDTO);
+    }
+
+
+    @GetMapping("/all")
+    public List<ForfaitInternetDto> getAllForfaitInternet() {
+        return forfaitInternetService.getAllForfaitInternet();
+    }
+
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ForfaitInternetDto> getForfaitInternetById(@PathVariable UUID id) {
         return forfaitInternetService.getForfaitInternetById(id);
     }
 
 
-    @PostMapping
-    public ForfaitInternet createForfaitInternet(@RequestBody ForfaitInternet forfaitInternet,
-                                                 @RequestParam UUID typeForfaitInternetId,
-                                                 @RequestParam UUID operateursId) {
-        return forfaitInternetService.saveForfaitInternet(forfaitInternet, typeForfaitInternetId, operateursId);
+    @PutMapping("/update")
+    public ResponseEntity<String> updateForfaitInternet(@RequestBody ForfaitInternetDto ForfaitInternetDTO) {
+        return forfaitInternetService.updateForfaitInternet(ForfaitInternetDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteForfaitInternet(@PathVariable UUID id) {
-        forfaitInternetService.deleteForfaitInternet(id);
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteForfaitInternet(@RequestParam UUID id) {
+        return forfaitInternetService.deleteForfaitInternet(id);
     }
+
 }
 

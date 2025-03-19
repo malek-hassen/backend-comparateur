@@ -1,13 +1,8 @@
 package com.example.comparateur.forfaitmobile.controller;
 
-
-
-
 import com.example.comparateur.forfaitmobile.dto.TypeMobileDTO;
 import com.example.comparateur.forfaitmobile.service.TypeForfaitMService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +10,11 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/type-mobiles")
+@RequestMapping("/forfait/type-mobiles")
 @RequiredArgsConstructor
 public class TypeMobileController {
+
     private final TypeForfaitMService typeMobileService;
-    private static final Logger LOGGER = LoggerFactory.getLogger(TypeMobileController.class);
 
     // Create a TypeMobile
     @PostMapping("/create")
@@ -51,4 +46,3 @@ public class TypeMobileController {
         return typeMobileService.deleteTypeMobile(id);
     }
 }
-

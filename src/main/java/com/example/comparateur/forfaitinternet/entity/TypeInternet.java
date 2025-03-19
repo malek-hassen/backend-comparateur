@@ -5,9 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "type_internet")
 public class TypeInternet {
 
@@ -17,19 +20,26 @@ public class TypeInternet {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Getter
-    @Setter
+
     private UUID id;
 
-
-    @Getter
-    @Setter
     @Column(name = "nom")
     private String nom;
 
-    @Setter
-    @Getter
+
     @Column(name = "discp")
     private String discp;
+
+
+    @ManyToMany(mappedBy = "typeBox")
+    private List<ForfaitInternet> forfaitInternet;
+
+    @Override
+    public String toString() {
+        return "TypeInternet{" + "id=" + id
+                + ", nom=" + nom
+                + ", discp=" + discp
+                + ", forfaitInternet=" + forfaitInternet;
+    }
 
 }

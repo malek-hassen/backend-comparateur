@@ -27,6 +27,7 @@ public class TypeMobileMapper {
         typemobile.setTypeMid(typeMobileDTO.getTypeMid());
         typemobile.setNom(typeMobileDTO.getNom());
         typemobile.setDiscp(typeMobileDTO.getDiscp());
+        typemobile.setTypeMid(typeMobileDTO.getTypeMid());
 
         return typemobile;
     }
@@ -36,6 +37,7 @@ public class TypeMobileMapper {
                 .typeMid(typemobile.getTypeMid())
                 .nom(typemobile.getNom())
                 .discp(typemobile.getDiscp())
+                .typeMid(typemobile.getTypeMid())
                 .build();
     }
     public TypeMobileResponse toResponse(TypeM typemobile) {
