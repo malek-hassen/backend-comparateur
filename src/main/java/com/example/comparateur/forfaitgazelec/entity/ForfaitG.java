@@ -1,15 +1,13 @@
 package com.example.comparateur.forfaitgazelec.entity;
 
 
-import com.example.comparateur.Forfait;
+import com.example.comparateur.forfait.entity.Forfait;
 import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Getter

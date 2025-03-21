@@ -1,5 +1,5 @@
 package com.example.comparateur.forfaitinternet.entity;
-import com.example.comparateur.Forfait;
+import com.example.comparateur.forfait.entity.Forfait;
 import com.example.comparateur.forfaitinternet.enumtech.Technologie;
 import com.example.comparateur.operateur.entity.Operateur;
 import jakarta.persistence.*;

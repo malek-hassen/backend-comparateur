@@ -1,4 +1,4 @@
-package com.example.comparateur;
+package com.example.comparateur.forfait.entity;
 
 
 import jakarta.persistence.*;

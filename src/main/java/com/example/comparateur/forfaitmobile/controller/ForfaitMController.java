@@ -20,14 +20,13 @@ public class ForfaitMController {
     private final ForfaitMobileService forfaitMobileService;
 
     // Create a Forfait Mobile
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/save")
+    //@PreAuthorize("hasAnyAuthority('ADMIN')")
     public ForfaitM createForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO) {
         return forfaitMobileService.createForfaitMobile(forfaitMobileDTO);
     }
 
     // Get all Forfaits Mobile
-    @PreAuthorize("hasAnyRole('USER, ADMIN')")
     @GetMapping("/all")
     public List<ForfaitMobileDTO> getAllForfaitsMobile() {
         return forfaitMobileService.getAllForfaitsMobile();
@@ -40,8 +39,8 @@ public class ForfaitMController {
     }
 
     // Update Forfait Mobile
-    @PutMapping("/update")
-    public ResponseEntity<String> updateForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO, @PathVariable UUID id) {
         return forfaitMobileService.updateForfaitMobile(forfaitMobileDTO);
     }
 

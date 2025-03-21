@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll() // Swagger UI open to all
                         .requestMatchers(HttpMethod.GET, "/forfait/**").hasAnyRole("USER", "ADMIN") // GET requests allowed for USER and ADMIN
-                        .requestMatchers(HttpMethod.POST, "/forfait/**").hasRole("ADMIN") // POST requests only for ADMIN
+                        .requestMatchers(HttpMethod.POST, "/forfait/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/forfait/**").hasRole("ADMIN") // PUT requests only for ADMIN
                         .requestMatchers(HttpMethod.DELETE, "/forfait/**").hasRole("ADMIN") // DELETE requests only for ADMIN
 
@@ -59,8 +59,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
+    
 
     @Bean
     public PasswordEncoder passwordEncoder() {
