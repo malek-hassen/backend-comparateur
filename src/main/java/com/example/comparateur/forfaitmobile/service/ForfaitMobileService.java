@@ -48,7 +48,6 @@ public class ForfaitMobileService {
     // Update Forfait Mobile
 
     public ResponseEntity<String> updateForfaitMobile(ForfaitMobileDTO forfaitMobileDTO) {
-        // Validate input data
         if (forfaitMobileDTO == null || forfaitMobileDTO.getId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request data");
         }
@@ -58,12 +57,12 @@ public class ForfaitMobileService {
         }
 
         ForfaitM forfaitM = forfaitMobileMapper.toEntity(forfaitMobileDTO);
-
+        forfaitM = forfaitMRepository.findById(forfaitM.getId())
+                .orElseThrow(() -> new RuntimeException("Forfait not found")); // Fetch entity
         forfaitMRepository.save(forfaitM);
 
         return ResponseEntity.ok("Forfait Mobile Updated Successfully");
     }
-
 
     // Delete Forfait Mobile
 

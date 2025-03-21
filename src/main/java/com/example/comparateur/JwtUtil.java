@@ -28,7 +28,6 @@ public class JwtUtil {
        try {
            String token = Jwts.builder()
                    .setSubject(username)
-                   .claim("role", "ROLE_ADMIN")
                    .setIssuedAt(new Date())
                    .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                    .signWith(key)

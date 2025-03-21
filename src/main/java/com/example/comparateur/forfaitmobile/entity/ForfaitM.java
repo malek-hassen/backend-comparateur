@@ -1,6 +1,6 @@
 package com.example.comparateur.forfaitmobile.entity;
 
-import com.example.comparateur.forfait.entity.Forfait;
+import com.example.comparateur.Forfait;
 import com.example.comparateur.operateur.entity.Operateur;
 import jakarta.persistence.*;
 import lombok.*;
