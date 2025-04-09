@@ -4,8 +4,7 @@ import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
 import com.example.comparateur.forfaitinternet.entity.ForfaitInternet;
 import com.example.comparateur.forfaitinternet.service.ForfaitInternetService;
 import com.example.comparateur.forfaitmobile.dto.ForfaitMobileDTO;
-import com.example.comparateur.forfaitmobile.entity.ForfaitM;
-import com.example.comparateur.forfaitmobile.service.ForfaitMobileService;
+//import com.example.comparateur.forfaitmobile.entity.ForfaitM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

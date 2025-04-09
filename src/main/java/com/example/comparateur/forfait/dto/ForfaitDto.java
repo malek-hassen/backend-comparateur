@@ -13,6 +13,7 @@ import java.util.UUID;
 @Builder
 public class ForfaitDto {
     private UUID id;
+    private String dtype;
     private String title;
     private String description;
     private String lien;

@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface OperateurRepository extends CrudRepository<Operateur, UUID> {
+
     Optional<Operateur> findById(UUID operateursId);
 }
 

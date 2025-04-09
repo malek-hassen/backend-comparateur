@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ForfaitGazRepository extends CrudRepository<ForfaitG, UUID> {
+public interface ForfaitGazRepository extends JpaRepository<ForfaitG, UUID> {
 
     Optional<ForfaitG> findById(UUID id);
 

@@ -14,38 +14,36 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/forfait")
 @RequiredArgsConstructor
-
 public class ForfaitController {
+
     private final ForfaitService forfaitService;
 
-    // Create a Forfait
     @PostMapping("/save")
-    //@PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Forfait createForfait(@RequestBody ForfaitDto forfaitDTO) {
-        return forfaitService.createForfait(forfaitDTO);
+    public ForfaitDto createForfait(@RequestBody ForfaitDto forfaitDto, Forfait forfait) {
+        return forfaitService.createForfait(forfaitDto,forfait);
     }
 
-    // Get all Forfaits
     @GetMapping("/all")
-    public List<ForfaitDto> getAllForfaits() {
-        return forfaitService.getAllForfaits();
+    public ResponseEntity<List<ForfaitDto>> getAllForfaits() {
+        List<ForfaitDto> forfaits = forfaitService.getAllForfaits();
+
+        // If no forfaits are found, an empty list is returned.
+        return ResponseEntity.ok(forfaits);
+
     }
 
-    // Get a Forfait  by ID
     @GetMapping("/get/{id}")
     public ResponseEntity<ForfaitDto> getForfaitById(@PathVariable UUID id) {
         return forfaitService.getForfaitById(id);
     }
 
-    // Update Forfait
     @PutMapping("/update")
-    public ResponseEntity<String> updateForfait(@RequestBody ForfaitDto forfaitDTO) {
-        return forfaitService.updateForfait(forfaitDTO);
+    public ResponseEntity<String> updateForfait(@RequestBody ForfaitDto forfaitDto) {
+        return forfaitService.updateForfait(forfaitDto);
     }
 
-    // Delete Forfait
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteForfait(@RequestParam UUID id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteForfait(@PathVariable UUID id) {
         return forfaitService.deleteForfait(id);
     }
 }

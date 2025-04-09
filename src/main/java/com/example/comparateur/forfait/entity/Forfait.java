@@ -11,11 +11,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "forfait")
-public class Forfait {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Forfait {
 
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
+    private String dtype;
     private String title;
     private String description;
     @Pattern(
@@ -27,6 +29,7 @@ public class Forfait {
     private Double pricebase;
     private Double priceoffre;
     private Double periodoffre;
+    @Column(nullable = false)
     private boolean iswitheng;
     private Double dureeofeng;
     private boolean visibilite;

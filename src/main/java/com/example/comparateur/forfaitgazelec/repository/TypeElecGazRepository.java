@@ -10,6 +10,6 @@ import java.util.UUID;
 
 
 @Repository
-public interface TypeElecGazRepository extends CrudRepository<TypeGE, UUID> {
+public interface TypeElecGazRepository extends JpaRepository<TypeGE, UUID> {
     Optional<TypeGE> findByid(UUID id);
 }

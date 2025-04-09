@@ -1,6 +1,6 @@
 package com.example.comparateur.forfaitgazelec.entity;
 
-import com.example.comparateur.Forfait;
+import com.example.comparateur.forfait.entity.Forfait;
 import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,6 +13,7 @@ import java.util.UUID;
 @Setter
 @Entity
 //@Table(name = "forfait_E")
+@DiscriminatorValue("forfait Electricité")
 public class ForfaitE  extends Forfait {
 
 

@@ -3,10 +3,7 @@ package com.example.comparateur.forfaitmobile.dto;
 
 import com.example.comparateur.forfaitmobile.entity.TypeM;
 import com.example.comparateur.operateur.entity.Operateur;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,12 +15,25 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ForfaitMobileDTO {
     private UUID id;
+    private String title;
+    private String description;
+    private String lien;
+    private String resume;
+    private Double pricebase;
+    private Double priceoffre;
+    private Double periodoffre;
+    private boolean iswitheng;
+    private Double dureeofeng;
+    private boolean visibilite;
     private Integer debit;
+    private String typeDebit;
     private Double prixSIM;
     private Integer heure;
     private boolean with5G;
     private Double value;
     private boolean isBlocked;
+    @Getter
+    @Setter
     private Operateur operateur;
     private List<TypeM> typeBoxM;
 

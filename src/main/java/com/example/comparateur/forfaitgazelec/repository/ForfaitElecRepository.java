@@ -10,6 +10,6 @@ import java.util.UUID;
 
 
 @Repository
-public interface ForfaitElecRepository extends CrudRepository<ForfaitE, UUID> {
+public interface ForfaitElecRepository extends JpaRepository<ForfaitE, UUID> {
     Optional<ForfaitE> findById(UUID id);
 }

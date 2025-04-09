@@ -1,7 +1,7 @@
 package com.example.comparateur.forfaitgazelec.entity;
 
 
-import com.example.comparateur.Forfait;
+import com.example.comparateur.forfait.entity.Forfait;
 import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,6 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 //@Table(name = "forfait_G")
+@DiscriminatorValue("forfait Gaz")
 public class ForfaitG extends Forfait {
 
 

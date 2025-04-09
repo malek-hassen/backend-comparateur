@@ -1,53 +1,54 @@
 package com.example.comparateur.forfaitmobile.controller;
 
 import com.example.comparateur.forfaitmobile.dto.ForfaitMobileDTO;
-import com.example.comparateur.forfaitmobile.entity.ForfaitM;
 import com.example.comparateur.forfaitmobile.service.ForfaitMobileService;
-import lombok.RequiredArgsConstructor;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-
 @RestController
 @RequestMapping("/forfait/forfaits-mobiles")
-@RequiredArgsConstructor
 public class ForfaitMController {
 
     private final ForfaitMobileService forfaitMobileService;
 
-    // Create a Forfait Mobile
-    @PreAuthorize("hasRole('ADMIN')")
+    @Autowired
+    public ForfaitMController(ForfaitMobileService forfaitMobileService) {
+        this.forfaitMobileService = forfaitMobileService;
+    }
+
+    // Endpoint to create a ForfaitMobile
     @PostMapping("/save")
-    public ForfaitM createForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO) {
-        return forfaitMobileService.createForfaitMobile(forfaitMobileDTO);
+    public ResponseEntity<ForfaitMobileDTO> createForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO) {
+        ForfaitMobileDTO createdForfaitMobile = forfaitMobileService.createForfaitMobile(forfaitMobileDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdForfaitMobile);
     }
 
-    // Get all Forfaits Mobile
-    @PreAuthorize("hasAnyRole('USER, ADMIN')")
+    // Endpoint to get all ForfaitMobiles
     @GetMapping("/all")
-    public List<ForfaitMobileDTO> getAllForfaitsMobile() {
-        return forfaitMobileService.getAllForfaitsMobile();
+    public List<ForfaitMobileDTO> getAllForfaits() {
+        return forfaitMobileService.getAllForfaits();
     }
 
-    // Get a Forfait Mobile by ID
+    // Endpoint to get a ForfaitMobile by ID
     @GetMapping("/get/{id}")
     public ResponseEntity<ForfaitMobileDTO> getForfaitMobileById(@PathVariable UUID id) {
-        return forfaitMobileService.getForfaitMobileById(id);
+        return forfaitMobileService.getForfaitById(id);
     }
 
-    // Update Forfait Mobile
-    @PutMapping("/update")
-    public ResponseEntity<String> updateForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO) {
+    // Endpoint to update a ForfaitMobile
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateForfaitMobile(@RequestBody ForfaitMobileDTO forfaitMobileDTO, @PathVariable UUID id) {
+        forfaitMobileDTO.setId(id); // Ensure ID from path is used
         return forfaitMobileService.updateForfaitMobile(forfaitMobileDTO);
     }
 
-    // Delete Forfait Mobile
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteForfaitMobile(@RequestParam UUID id) {
-        return forfaitMobileService.deleteForfaitMobile(id);
+    // Endpoint to delete a ForfaitMobile by ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteForfaitMobile(@PathVariable UUID id) {
+        return forfaitMobileService.deleteForfait(id);
     }
 }
