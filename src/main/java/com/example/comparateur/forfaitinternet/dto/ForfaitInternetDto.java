@@ -1,8 +1,8 @@
 package com.example.comparateur.forfaitinternet.dto;
 
 
+import com.example.comparateur.forfait.entity.TypeForfait;
 import com.example.comparateur.operateur.entity.Operateur;
-import com.example.comparateur.forfaitinternet.entity.TypeInternet;
 import com.example.comparateur.forfaitinternet.enumtech.Technologie;
 import jakarta.persistence.*;
 
@@ -16,6 +16,17 @@ import java.util.UUID;
 @Builder
 public class ForfaitInternetDto {
     private UUID id;
+    private String title;
+    private String description;
+    private String lien;
+    private String resume;
+    private Double pricebase;
+    private Double priceoffre;
+    private Double periodoffre;
+    private boolean iswitheng;
+    private Double dureeofeng;
+    private String NomOperateur;
+    private boolean visibilite;
     private Integer debit;
     private boolean withmobile;
     private Integer vitesse;
@@ -25,5 +36,5 @@ public class ForfaitInternetDto {
     @Enumerated(EnumType.STRING)
     private Technologie technologie;
     private Operateur operateur;
-    private List<TypeInternet> typeBox;
+    private List<TypeForfait> typeBox;
 }

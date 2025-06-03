@@ -26,7 +26,6 @@ public class OperateurController {
         this.operateurService = operateurService;
         this.operateurMapper = operateurMapper;
     }
-    @PreAuthorize("@privilegeService.hasPrivilege('MANAGEMENT', 'BUILDINGS', 'READ')")
     @GetMapping
     public ResponseEntity<List<OperateurDTO>> getAllOperateurs() {
         List<OperateurDTO> dtos = operateurService.getAllOperateurs()
@@ -35,7 +34,6 @@ public class OperateurController {
                 .toList();
         return ResponseEntity.ok(dtos);
     }
-    @PreAuthorize("@privilegeService.hasPrivilege('MANAGEMENT', 'BUILDINGS', 'READ')")
     @GetMapping("/{id}")
     public ResponseEntity<OperateurDTO> getOperateurById(@PathVariable UUID id) {
         Operateur operateur = operateurService.getOperateursById(id);
@@ -45,7 +43,6 @@ public class OperateurController {
         return ResponseEntity.ok(operateurMapper.toDto(operateur));
     }
 
-    @PreAuthorize("@privilegeService.hasPrivilege('MANAGEMENT', 'BUILDINGS', 'WRITE')")
     @PostMapping("/create_operator")
     public ResponseEntity<OperateurDTO> createOperateur(@RequestBody OperateurDTO dto) {
         Operateur operateur = operateurService.saveOperateurs(dto);

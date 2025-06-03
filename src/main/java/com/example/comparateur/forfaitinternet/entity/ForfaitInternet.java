@@ -1,5 +1,6 @@
 package com.example.comparateur.forfaitinternet.entity;
 import com.example.comparateur.forfait.entity.Forfait;
+import com.example.comparateur.forfait.entity.TypeForfait;
 import com.example.comparateur.forfaitinternet.enumtech.Technologie;
 import com.example.comparateur.operateur.entity.Operateur;
 import jakarta.persistence.*;
@@ -36,9 +37,9 @@ public class ForfaitInternet extends Forfait {
         @JoinTable(
                 name = "Type_forfaitI",
                 joinColumns = { @JoinColumn(name = "forfait_internet_id") },
-                inverseJoinColumns = { @JoinColumn(name = "type_internet_id") }
+                inverseJoinColumns = { @JoinColumn(name = "type_forfait_id") }
         )
-        private List<TypeInternet> typeBox;
+        private List<TypeForfait> typeBox;
 
         @Override
         public String toString() {

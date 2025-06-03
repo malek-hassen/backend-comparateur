@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -78,15 +79,27 @@ public class AuthController {
         }
     }
 
-
+//
+//    @PostMapping("/register")
+//    public String register(@RequestBody Map<String, String> request) {
+//        Admin admin = new Admin();
+//        admin.setUsername(request.get("username"));
+//        admin.setPassword(passwordEncoder.encode(request.get("password")));
+//        admin.setRole("ADMIN");
+//        adminRepository.save(admin);
+//        return "User registered successfully";
+//    }
     @PostMapping("/register")
-    public String register(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> request) {
         Admin admin = new Admin();
         admin.setUsername(request.get("username"));
         admin.setPassword(passwordEncoder.encode(request.get("password")));
         admin.setRole("ADMIN");
         adminRepository.save(admin);
-        return "User registered successfully";
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully");
+        return ResponseEntity.ok(response);
     }
 
 }

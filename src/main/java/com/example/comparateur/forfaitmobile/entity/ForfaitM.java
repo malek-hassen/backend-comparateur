@@ -1,6 +1,7 @@
 package com.example.comparateur.forfaitmobile.entity;
 
 import com.example.comparateur.forfait.entity.Forfait;
+import com.example.comparateur.forfait.entity.TypeForfait;
 import com.example.comparateur.operateur.entity.Operateur;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,6 +31,9 @@ public class ForfaitM extends Forfait {
 
     private Boolean isBlocked;
 
+    private String NomOperateur;
+    private String urlOperateur;
+
     @ManyToOne
     @JoinColumn(name = "operateur_id")
     private Operateur operateur;
@@ -38,9 +42,9 @@ public class ForfaitM extends Forfait {
     @JoinTable(
             name = "Type_forfaitM",
             joinColumns = {@JoinColumn(name = "forfait_Mobile_id")},
-            inverseJoinColumns = {@JoinColumn(name = "type_Mobile_id")}
+            inverseJoinColumns = {@JoinColumn(name = "type_forfait_id")}
     )
-    private List<TypeM> typeM;
+    private List<TypeForfait> typeM;
 
     @Override
     public String toString() {

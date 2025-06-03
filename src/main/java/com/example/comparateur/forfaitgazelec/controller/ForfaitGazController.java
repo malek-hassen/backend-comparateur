@@ -1,9 +1,11 @@
 package com.example.comparateur.forfaitgazelec.controller;
 
 
+import com.example.comparateur.forfaitgazelec.dto.ForfaitElectriciteDto;
 import com.example.comparateur.forfaitgazelec.dto.ForfaitGazDto;
 import com.example.comparateur.forfaitgazelec.entity.ForfaitG;
 import com.example.comparateur.forfaitgazelec.service.ForfaitGazService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +27,11 @@ public class ForfaitGazController {
 
 
     @PostMapping("/save")
-    public ForfaitG createForfaitGaz(@RequestBody ForfaitGazDto forfaitGazDTO) {
-        return forfaitGazService.createForfaitGaz(forfaitGazDTO);
+    public ResponseEntity<ForfaitGazDto> createForfaitGaz(@RequestBody ForfaitGazDto forfaitGazDto) {
+        ForfaitGazDto createdForfaitGaz = forfaitGazService.createForfaitGaz(forfaitGazDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdForfaitGaz);
     }
+
 
 
     @GetMapping("/all")

@@ -2,6 +2,7 @@ package com.example.comparateur.forfaitgazelec.entity;
 
 
 import com.example.comparateur.forfait.entity.Forfait;
+import com.example.comparateur.forfait.entity.TypeForfait;
 import com.example.comparateur.fournisseurs.entity.Fournisseurs;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -44,11 +45,11 @@ public class ForfaitG extends Forfait {
 
     @ManyToMany
     @JoinTable(
-            name = "Type_forfaitg",
-            joinColumns = { @JoinColumn(name = "forfait_gaz_id") },
-            inverseJoinColumns = { @JoinColumn(name = "type_GE_id") }
+            name = "type_forfaitg",
+            joinColumns = @JoinColumn(name = "forfait_gaz_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_ge_id")
     )
-    private List<TypeGE> typeGaz;
+    private List<TypeForfait> typeGaz;
     @Override
     public String toString() {
         return "ForfaitG{"

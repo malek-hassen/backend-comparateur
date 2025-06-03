@@ -1,10 +1,8 @@
 package com.example.comparateur.forfaitinternet.controller;
 
 import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
-import com.example.comparateur.forfaitinternet.entity.ForfaitInternet;
 import com.example.comparateur.forfaitinternet.service.ForfaitInternetService;
-import com.example.comparateur.forfaitmobile.dto.ForfaitMobileDTO;
-//import com.example.comparateur.forfaitmobile.entity.ForfaitM;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +22,9 @@ public class ForfaitInternetController {
 
 
     @PostMapping("/save")
-    public ForfaitInternet createForfaitInternet(@RequestBody ForfaitInternetDto ForfaitInternetDTO) {
-        return forfaitInternetService.createForfaitInternet(ForfaitInternetDTO);
+    public ResponseEntity<ForfaitInternetDto> createForfaitInternet(@RequestBody ForfaitInternetDto forfaitInternetDTO) {
+        ForfaitInternetDto createdForfaitInternet = forfaitInternetService.createForfaitInternet(forfaitInternetDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdForfaitInternet);
     }
 
 

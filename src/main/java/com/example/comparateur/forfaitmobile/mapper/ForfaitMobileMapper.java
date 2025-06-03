@@ -2,16 +2,21 @@ package com.example.comparateur.forfaitmobile.mapper;
 
 
 import com.example.comparateur.forfait.entity.Forfait;
+import com.example.comparateur.operateur.repository.OperateurRepository;
 import com.example.comparateur.forfaitmobile.controller.ForfaitMobileResponse;
 import com.example.comparateur.forfaitmobile.dto.ForfaitMobileDTO;
 import com.example.comparateur.forfaitmobile.entity.ForfaitM;
+import com.example.comparateur.operateur.entity.Operateur;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
 
 
 @Component
 public class ForfaitMobileMapper {
+
+    private OperateurRepository operateurRepository;
 
     // Méthode pour convertir le DTO en entité
     public ForfaitM toEntity(Forfait forfait, ForfaitMobileDTO forfaitMobileDTO) {
@@ -19,6 +24,9 @@ public class ForfaitMobileMapper {
             return null;
         }
         ForfaitM forfaitMobile = new ForfaitM();
+        UUID operateurId = forfaitMobileDTO.getOperateur().getId();
+        Operateur operateur = operateurRepository.findById(operateurId)
+                .orElseThrow(() -> new RuntimeException("Operateur not found with id: " + operateurId));
 
         // Set inherited attributes
         BeanUtils.copyProperties(forfait, forfaitMobile);
@@ -30,7 +38,9 @@ public class ForfaitMobileMapper {
         forfaitMobile.setHeure(forfaitMobileDTO.getHeure());
         forfaitMobile.setValue(forfaitMobileDTO.getValue());
         forfaitMobile.setIsBlocked(forfaitMobileDTO.isBlocked());
-        forfaitMobile.setOperateur(forfaitMobile.getOperateur());
+        forfaitMobile.setOperateur(operateur);
+        forfaitMobile.setNomOperateur(forfaitMobileDTO.getNomOperateur());
+        forfaitMobile.setUrlOperateur(forfaitMobileDTO.getUrlOperateur());
         forfaitMobile.setTypeM(forfaitMobileDTO.getTypeBoxM());
 
         return forfaitMobile;
@@ -64,6 +74,8 @@ public class ForfaitMobileMapper {
                 .isBlocked(forfaitM.getIsBlocked())
                 .operateur(forfaitM.getOperateur())
                 .typeBoxM(forfaitM.getTypeM())
+                .NomOperateur(forfaitM.getNomOperateur())
+                .urlOperateur(forfaitM.getUrlOperateur())
                 .build();
     }
 

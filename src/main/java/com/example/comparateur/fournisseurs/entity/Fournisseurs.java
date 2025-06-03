@@ -19,5 +19,6 @@ public class Fournisseurs {
     private String nom;
 
     private String type;
+    private String url;
 
 }

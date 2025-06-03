@@ -25,10 +25,10 @@ public class ForfaitMobileService {
     }
 
     public ForfaitMobileDTO createForfaitMobile(ForfaitMobileDTO forfaitMobileDTO) {
-        // Create a new ForfaitM instance
+
         ForfaitM forfaitMobile = new ForfaitM();
 
-        // Set basic properties from DTO
+
         forfaitMobile.setTitle(forfaitMobileDTO.getTitle());
         forfaitMobile.setDescription(forfaitMobileDTO.getDescription());
         forfaitMobile.setLien(forfaitMobileDTO.getLien());
@@ -51,6 +51,8 @@ public class ForfaitMobileService {
         forfaitMobile.setIsBlocked(forfaitMobileDTO.isBlocked());
         forfaitMobile.setOperateur(forfaitMobileDTO.getOperateur());
         forfaitMobile.setTypeM(forfaitMobileDTO.getTypeBoxM());
+        forfaitMobile.setNomOperateur(forfaitMobileDTO.getNomOperateur());
+        forfaitMobile.setUrlOperateur(forfaitMobileDTO.getUrlOperateur());
 
         // Save the ForfaitM entity to the repository
         ForfaitM savedForfaitMobile = forfaitMRepository.save(forfaitMobile);
@@ -114,6 +116,8 @@ public class ForfaitMobileService {
         existingForfaitMobile.setValue(forfaitMobileDTO.getValue());
         existingForfaitMobile.setIsBlocked(forfaitMobileDTO.isBlocked());
         existingForfaitMobile.setOperateur(forfaitMobileDTO.getOperateur());
+        existingForfaitMobile.setNomOperateur(forfaitMobileDTO.getNomOperateur());
+        existingForfaitMobile.setUrlOperateur(forfaitMobileDTO.getUrlOperateur());
         existingForfaitMobile.setTypeM(forfaitMobileDTO.getTypeBoxM());
 
         // Save the updated entity

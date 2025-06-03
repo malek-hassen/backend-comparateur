@@ -18,6 +18,7 @@ public class FournisseurMapper {
             dto.setId(fournisseur.getId());
             dto.setNom(fournisseur.getNom());
             dto.setType(fournisseur.getType());
+            dto.setUrl(fournisseur.getUrl());
 
             return dto;
         }
@@ -29,6 +30,7 @@ public class FournisseurMapper {
             fournisseur.setId(dto.getId());
             fournisseur.setNom(dto.getNom());
             fournisseur.setType(dto.getType());
+            fournisseur.setUrl(dto.getUrl());
 
             return fournisseur;
         }

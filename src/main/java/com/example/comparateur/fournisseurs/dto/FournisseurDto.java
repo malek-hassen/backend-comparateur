@@ -20,5 +20,6 @@ public class FournisseurDto {
     private String nom;
 
     private String type;
+    private String url;
 
 }

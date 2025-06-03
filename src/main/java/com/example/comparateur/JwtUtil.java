@@ -15,7 +15,7 @@ public class JwtUtil {
 
     private Key key;
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.expiration}0")
     private long expirationTime;
 
     @PostConstruct

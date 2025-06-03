@@ -22,6 +22,7 @@ public class Operateur {
     @Column(name = "nom")
     private String nom;
 
-
+   @Column(name = "url")
+    private String url;
 
 }

@@ -3,6 +3,8 @@ package com.example.comparateur.forfaitgazelec.controller;
 import com.example.comparateur.forfaitgazelec.dto.ForfaitElectriciteDto;
 import com.example.comparateur.forfaitgazelec.entity.ForfaitE;
 import com.example.comparateur.forfaitgazelec.service.ForfaitElecService;
+import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +25,9 @@ public class ForfaitElecController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/save")
-    public ForfaitE createForfaitElec(@RequestBody ForfaitElectriciteDto forfaitElectriciteDTO) {
-        return forfaitElecService.createForfaitElectricite(forfaitElectriciteDTO);
+    public ResponseEntity<ForfaitElectriciteDto> createForfaitElectricite(@RequestBody ForfaitElectriciteDto forfaitElectriciteDto) {
+        ForfaitElectriciteDto createdForfaitElectricite = forfaitElecService.createForfaitElectricite(forfaitElectriciteDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdForfaitElectricite);
     }
 
 

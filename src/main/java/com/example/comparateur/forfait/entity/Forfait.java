@@ -3,13 +3,20 @@ package com.example.comparateur.forfait.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "forfait")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Forfait {
@@ -33,4 +40,13 @@ public abstract class Forfait {
     private boolean iswitheng;
     private Double dureeofeng;
     private boolean visibilite;
+
+    @ManyToMany
+    @JoinTable(
+            name = "forfait_typebox", // join table name
+            joinColumns = @JoinColumn(name = "forfait_id"),
+            inverseJoinColumns = @JoinColumn(name = "typebox_id")
+    )
+    private List<TypeForfait> typeBox;
+
 }

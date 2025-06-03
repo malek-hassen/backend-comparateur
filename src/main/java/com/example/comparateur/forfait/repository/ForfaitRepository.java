@@ -8,5 +8,6 @@ import java.util.UUID;
 
 
 @Repository
-public interface ForfaitRepository extends JpaRepository<Forfait, UUID> {
+public interface ForfaitRepository extends JpaRepository<Forfait, UUID>  {
+    boolean existsByTitle(String title);
 }

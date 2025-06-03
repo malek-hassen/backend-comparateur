@@ -15,6 +15,7 @@ public class OperateurMapper {
         OperateurDTO dto = new OperateurDTO();
         dto.setId(operateur.getId());
         dto.setNom(operateur.getNom());
+        dto.setUrl(operateur.getUrl());
 
         return dto;
     }
@@ -25,6 +26,7 @@ public class OperateurMapper {
         Operateur operateur = new Operateur();
         operateur.setId(dto.getId());
         operateur.setNom(dto.getNom());
+        operateur.setUrl(dto.getUrl());
 
         return operateur;
     }

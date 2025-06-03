@@ -6,6 +6,7 @@ import com.example.comparateur.forfaitgazelec.entity.ForfaitE;
 import com.example.comparateur.forfaitgazelec.mapper.ForfaitElectriciteMapper;
 import com.example.comparateur.forfaitgazelec.repository.ForfaitElecRepository;
 import com.example.comparateur.forfaitinternet.dto.ForfaitInternetDto;
+import com.example.comparateur.forfaitinternet.entity.ForfaitInternet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,38 @@ public class ForfaitElecService {
         this.forfaitElectriciteMapper = forfaitElectriciteMapper;
     }
 
-    public ForfaitE createForfaitElectricite(ForfaitElectriciteDto forfaitElectriciteDto) {
-        return  forfaitElectriciteRepository.save(forfaitElectriciteMapper.toEntity(forfaitElectriciteDto));
-    }
+    public ForfaitElectriciteDto createForfaitElectricite(ForfaitElectriciteDto forfaitelectriciteDTO) {
 
+        ForfaitE forfaitE = new ForfaitE();
+
+
+        forfaitE.setTitle(forfaitelectriciteDTO.getTitle());
+        forfaitE.setDescription(forfaitelectriciteDTO.getDescription());
+        forfaitE.setLien(forfaitelectriciteDTO.getLien());
+        forfaitE.setResume(forfaitelectriciteDTO.getResume());
+        forfaitE.setPricebase(forfaitelectriciteDTO.getPricebase());
+        forfaitE.setPriceoffre(forfaitelectriciteDTO.getPriceoffre());
+        forfaitE.setPeriodoffre(forfaitelectriciteDTO.getPeriodoffre());
+        forfaitE.setIswitheng(forfaitelectriciteDTO.isIswitheng());
+        forfaitE.setDureeofeng(forfaitelectriciteDTO.getDureeofeng());
+        forfaitE.setVisibilite(forfaitelectriciteDTO.isVisibilite());
+        forfaitE.setDtype("Forfait Electricité");
+
+        // Set ForfaitM-specific attributes
+
+        forfaitE.setAbnMensuel(forfaitelectriciteDTO.getAbnMensuel());
+        forfaitE.setDureeConsommation(forfaitelectriciteDTO.getDureeConsommation());
+        forfaitE.setPrixverte(forfaitelectriciteDTO.getPrixverte());
+        forfaitE.setPrixwattindexe(forfaitelectriciteDTO.getPrixwattindexe());
+        forfaitE.setSource(forfaitelectriciteDTO.getSource());
+        forfaitE.setTypeElectricite(forfaitelectriciteDTO.getTypeElectricite());
+        forfaitE.setPuissanceCompteur(forfaitelectriciteDTO.getPuissanceCompteur());
+        forfaitE.setFournisseurs(forfaitelectriciteDTO.getFournisseurs());
+        // Save the ForfaitM entity to the repository
+        ForfaitE savedForfaitE = forfaitElectriciteRepository.save(forfaitE);
+
+        return forfaitElectriciteMapper.toDTO(savedForfaitE);
+    }
     public List<ForfaitElectriciteDto> getAllForfaitElectricite() {
         List<ForfaitE > forfaits = new ArrayList<>();
         forfaitElectriciteRepository.findAll().forEach(forfaits::add);  // Convert Iterable to List
@@ -52,22 +81,49 @@ public class ForfaitElecService {
 
 
 
-    public ResponseEntity<String> updateForfaitElectricite(ForfaitElectriciteDto forfaitElectriciteDTO) {
-        if (forfaitElectriciteDTO == null || forfaitElectriciteDTO.getId() == null) {
+    public ResponseEntity<String> updateForfaitElectricite(ForfaitElectriciteDto forfaitelectriciteDTO) {
+        if (forfaitelectriciteDTO == null || forfaitelectriciteDTO.getId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request data");
         }
 
-        if (! forfaitElectriciteRepository.existsById(forfaitElectriciteDTO.getId())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Forfait Electricite not found");
+        Optional<ForfaitE> forfaitEOptional = forfaitElectriciteRepository.findById(forfaitelectriciteDTO.getId());
+        if (forfaitEOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Forfait Mobile not found");
         }
 
-        ForfaitE forfaitE =forfaitElectriciteMapper.toEntity(forfaitElectriciteDTO);
-        forfaitE =  forfaitElectriciteRepository.findById(forfaitE.getId())
-                .orElseThrow(() -> new RuntimeException("Forfait not found")); // Fetch entity
-        forfaitElectriciteRepository.save(forfaitE);
+        ForfaitE existingForfaitE= forfaitEOptional.get();
 
-        return ResponseEntity.ok("Forfait Electricite Updated Successfully");
+        // Update base Forfait properties
+        existingForfaitE.setTitle(forfaitelectriciteDTO.getTitle());
+        existingForfaitE.setDescription(forfaitelectriciteDTO.getDescription());
+        existingForfaitE.setLien(forfaitelectriciteDTO.getLien());
+        existingForfaitE.setResume(forfaitelectriciteDTO.getResume());
+        existingForfaitE.setPricebase(forfaitelectriciteDTO.getPricebase());
+        existingForfaitE.setPriceoffre(forfaitelectriciteDTO.getPriceoffre());
+        existingForfaitE.setPeriodoffre(forfaitelectriciteDTO.getPeriodoffre());
+        existingForfaitE.setIswitheng(forfaitelectriciteDTO.isIswitheng());
+        existingForfaitE.setDureeofeng(forfaitelectriciteDTO.getDureeofeng());
+        existingForfaitE.setVisibilite(forfaitelectriciteDTO.isVisibilite());
+        existingForfaitE.setDtype("Forfait Electricité");
+
+        // Set ForfaitM-specific attributes
+
+        existingForfaitE.setAbnMensuel(forfaitelectriciteDTO.getAbnMensuel());
+        existingForfaitE.setDureeConsommation(forfaitelectriciteDTO.getDureeConsommation());
+        existingForfaitE.setPrixverte(forfaitelectriciteDTO.getPrixverte());
+        existingForfaitE.setPrixwattindexe(forfaitelectriciteDTO.getPrixwattindexe());
+        existingForfaitE.setSource(forfaitelectriciteDTO.getSource());
+        existingForfaitE.setTypeElectricite(forfaitelectriciteDTO.getTypeElectricite());
+        existingForfaitE.setPuissanceCompteur(forfaitelectriciteDTO.getPuissanceCompteur());
+        existingForfaitE.setFournisseurs(forfaitelectriciteDTO.getFournisseurs());
+
+        // Save the updated entity
+        forfaitElectriciteRepository.save(existingForfaitE);
+
+        return ResponseEntity.ok("Forfait Mobile Updated Successfully");
     }
+
+
 
 
 

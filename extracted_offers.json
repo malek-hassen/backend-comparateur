@@ -1,0 +1,151 @@
+{
+  "mobile_offers" : [ {
+    "nom_offre" : "Série spéciale 130Go 5G",
+    "prix" : 14.99,
+    "data_go" : 130,
+    "engagement" : "24 mois",
+    "source_operator" : "Bouygues Telecom"
+  }, {
+    "nom_offre" : "Série spéciale 150Go 5G",
+    "prix" : 31.99,
+    "data_go" : 150,
+    "engagement" : "24 mois",
+    "source_operator" : "Bouygues Telecom"
+  }, {
+    "nom_offre" : "200Go 5G",
+    "prix" : 31.99,
+    "data_go" : 200,
+    "engagement" : "24 mois",
+    "source_operator" : "Bouygues Telecom"
+  }, {
+    "nom_offre" : "Série Spéciale 20Go",
+    "prix" : 11.99,
+    "data_go" : 20,
+    "engagement" : "24 mois",
+    "source_operator" : "Bouygues Telecom"
+  }, {
+    "nom_offre" : "Forfait 1 Go",
+    "prix" : 9.99,
+    "data_go" : 1,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "Forfait 30 Go",
+    "prix" : 19.99,
+    "data_go" : 30,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "Forfait 70 Go",
+    "prix" : 24.99,
+    "data_go" : 70,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "Forfait 100 Go",
+    "prix" : 34.99,
+    "data_go" : 100,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "Forfait 150 Go",
+    "prix" : 39.99,
+    "data_go" : 150,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "2h 1Go 5G",
+    "prix" : 5.99,
+    "data_go" : 1,
+    "engagement" : "Sans engagement",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "40 Go 5G",
+    "prix" : 15.99,
+    "data_go" : 40,
+    "engagement" : "Sans engagement",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "200 Go 5G",
+    "prix" : 19.99,
+    "data_go" : 200,
+    "engagement" : "Sans engagement",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "250 Go 5G",
+    "prix" : 25.99,
+    "data_go" : 250,
+    "engagement" : "Sans engagement",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "60 Go 5G",
+    "prix" : 27.99,
+    "data_go" : 60,
+    "engagement" : "24 mois",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "350 Go 5G",
+    "prix" : 39.99,
+    "data_go" : 350,
+    "engagement" : "24 mois",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "Série Pack Mobile 100Go 5G",
+    "prix" : 14.99,
+    "data_go" : 100,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Orange"
+  }, {
+    "nom_offre" : "Série Spéciale 180Go 5G+",
+    "prix" : 25.0,
+    "data_go" : 180,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Orange"
+  }, {
+    "nom_offre" : "Série Spéciale 20Go",
+    "prix" : 17.99,
+    "data_go" : 20,
+    "engagement" : "Sans engagement",
+    "source_operator" : "Orange"
+  } ],
+  "internet_offers" : [ {
+    "nom_offre" : "FIBRE_VITAL",
+    "prix" : 29.9,
+    "type_connexion" : "Fibre",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "FIBRE_IDEAL",
+    "prix" : 39.9,
+    "type_connexion" : "Fibre",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "FIBRE_ULTRA",
+    "prix" : 59.9,
+    "type_connexion" : "Fibre",
+    "source_operator" : "Nordnet"
+  }, {
+    "nom_offre" : "SFR Fibre Starter Internet + téléphone",
+    "prix" : 26.99,
+    "type_connexion" : "Fibre",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "SFR Fibre Power S",
+    "prix" : 29.99,
+    "type_connexion" : "Fibre",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "SFR Fibre Power",
+    "prix" : 36.99,
+    "type_connexion" : "Fibre",
+    "source_operator" : "SFR"
+  }, {
+    "nom_offre" : "SFR Fibre Premium",
+    "prix" : 44.99,
+    "type_connexion" : "Fibre",
+    "source_operator" : "SFR"
+  } ],
+  "metadata" : {
+    "extraction_date" : "2025-05-26T10:39:36",
+    "source_count" : 5
+  }
+}
