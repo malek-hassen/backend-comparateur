@@ -46,8 +46,8 @@ public class ForfaitInternetController {
     }
 
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteForfaitInternet(@RequestParam UUID id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteForfaitInternet(@PathVariable UUID id) {
         return forfaitInternetService.deleteForfaitInternet(id);
     }
 
